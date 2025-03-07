@@ -28,6 +28,7 @@ namespace ComputerGraphicsProject
         public MainWindow()
         {
             InitializeComponent();
+            ToolTab.Content = new FunctionFiltersView();
         }
 
         private void OpenImage_Click(object sender, RoutedEventArgs e)
@@ -55,6 +56,21 @@ namespace ComputerGraphicsProject
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void SelectFunctionFilters_Click(object sender, RoutedEventArgs e)
+        {
+            ToolTab.Content = new FunctionFiltersView();
+        }
+
+        private void SelectConvolutionFilters_Click(object sender, RoutedEventArgs e)
+        {
+            ToolTab.Content = new ConvolutionFiltersView();
+        }
+
+        private void SelectCustomFunctionFilters_Click(object sender, RoutedEventArgs e)
+        {
+            ToolTab.Content = new CustomFunctionFiltersView();
         }
 
     }

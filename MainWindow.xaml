@@ -8,9 +8,6 @@
         xmlns:utils="clr-namespace:ComputerGraphicsProject.Utils"
         mc:Ignorable="d"
         Title="ComputerGraphicsApp" Height="700" Width="1200" ResizeMode="CanResize">
-    <Window.DataContext>
-        <tooltabs:ToolTabsViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -33,14 +30,13 @@
                 <MenuItem Header="Redo" />
             </MenuItem>
             <MenuItem Header="Filters">
-                <MenuItem Header="Function Filters" Command="{Binding SelectFunctionFiltersCommand}"/>
-                <MenuItem Header="Convolution Filters" Command="{Binding SelectConvolutionFiltersCommand}"/>
-                <MenuItem Header="Custom Function Filters" Command="{Binding SelectCustomFunctionFiltersCommand}"/>
+                <MenuItem Header="Function Filters" Click="SelectFunctionFilters_Click"/>
+                <MenuItem Header="Convolution Filters" Click="SelectConvolutionFilters_Click"/>
+                <MenuItem Header="Custom Function Filters" Click="SelectCustomFunctionFilters_Click"/>
             </MenuItem>
         </Menu>
 
-        <ContentControl Grid.Row="1" Grid.Column="0" Background="#EEE"
-                Content="{Binding CurrentView}" />
+        <ContentControl x:Name="ToolTab" Grid.Row="1" Grid.Column="0" Background="#EEE"/>
 
 
         <Grid Grid.Row="1" Grid.Column="1">

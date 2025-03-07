@@ -89,7 +89,6 @@
     <Compile Include="ToolTabsViews\FunctionFiltersView.xaml.cs">
       <DependentUpon>FunctionFiltersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolTabsViews\ToolTabsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
