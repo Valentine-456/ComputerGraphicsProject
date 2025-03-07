@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ComputerGraphicsProject.ToolTabsViews;
+using ComputerGraphicsProject.Utils;
+using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace ComputerGraphicsProject
@@ -26,5 +29,33 @@ namespace ComputerGraphicsProject
         {
             InitializeComponent();
         }
+
+        private void OpenImage_Click(object sender, RoutedEventArgs e)
+        {
+            WriteableBitmap image = FileOperations.OpenFile();
+            if(image != null )
+            {
+                OriginalImage.Source = image;
+                ProcessedImage.Source = image;
+            }
+        }
+
+        private void SaveImage_Click(Object sender, RoutedEventArgs e)
+        {
+            if(ProcessedImage.Source is WriteableBitmap bitmap)
+            {
+                FileOperations.SaveFile(bitmap);
+            }
+            else
+            {
+                Console.WriteLine("fuck you");
+            }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
     }
 }

@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\FileOperations.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,30 +68,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-		<Page Include="ToolTabsViews\ConvolutionFiltersView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Include="ToolTabsViews\CustomFunctionFiltersView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Include="ToolTabsViews\FunctionFiltersView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-			<SubType>Designer</SubType>
-		</Page>
-		<Compile Include="ToolTabsViews\ConvolutionFiltersView.xaml.cs">
-			<DependentUpon>ConvolutionFiltersView.xaml</DependentUpon>
-		</Compile>
-		<Compile Include="ToolTabsViews\CustomFunctionFiltersView.xaml.cs">
-			<DependentUpon>CustomFunctionFiltersView.xaml</DependentUpon>
-		</Compile>
-		<Compile Include="ToolTabsViews\FunctionFiltersView.xaml.cs">
-			<DependentUpon>FunctionFiltersView.xaml</DependentUpon>
-		</Compile>
-		<Compile Include="ToolTabsViews\ToolTabsViewModel.cs" />	
+    <Page Include="ToolTabsViews\ConvolutionFiltersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolTabsViews\CustomFunctionFiltersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolTabsViews\FunctionFiltersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ToolTabsViews\ConvolutionFiltersView.xaml.cs">
+      <DependentUpon>ConvolutionFiltersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolTabsViews\CustomFunctionFiltersView.xaml.cs">
+      <DependentUpon>CustomFunctionFiltersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolTabsViews\FunctionFiltersView.xaml.cs">
+      <DependentUpon>FunctionFiltersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolTabsViews\ToolTabsViewModel.cs" />
   </ItemGroup>
-	<ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

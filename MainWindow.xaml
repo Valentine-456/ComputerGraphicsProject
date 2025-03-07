@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerGraphicsProject"
         xmlns:tooltabs="clr-namespace:ComputerGraphicsProject.ToolTabsViews"
+        xmlns:utils="clr-namespace:ComputerGraphicsProject.Utils"
         mc:Ignorable="d"
         Title="ComputerGraphicsApp" Height="700" Width="1200" ResizeMode="CanResize">
     <Window.DataContext>
@@ -23,9 +24,9 @@
         
         <Menu Grid.Row="0" Grid.ColumnSpan="3">
             <MenuItem Header="File">
-                <MenuItem Header="Open Image" />
-                <MenuItem Header="Save Image" />
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Open Image" Click="OpenImage_Click"/>
+                <MenuItem Header="Save Image" Click="SaveImage_Click"/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo" />
@@ -48,10 +49,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                <Image Name="OriginalImage" Stretch="Uniform"/>
+                <Image x:Name="OriginalImage" Stretch="Uniform"/>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                <Image Name="FilteredImage" Stretch="Uniform"/>
+                <Image x:Name="ProcessedImage" Stretch="Uniform"/>
             </Border>
         </Grid>
 
