@@ -4,9 +4,61 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerGraphicsProject"
+        xmlns:tooltabs="clr-namespace:ComputerGraphicsProject.ToolTabsViews"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ComputerGraphicsApp" Height="700" Width="1200" ResizeMode="CanResize">
+    <Window.DataContext>
+        <tooltabs:ToolTabsViewModel/>
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
         
+        <Menu Grid.Row="0" Grid.ColumnSpan="3">
+            <MenuItem Header="File">
+                <MenuItem Header="Open Image" />
+                <MenuItem Header="Save Image" />
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" />
+                <MenuItem Header="Redo" />
+            </MenuItem>
+            <MenuItem Header="Filters">
+                <MenuItem Header="Function Filters" Command="{Binding SelectFunctionFiltersCommand}"/>
+                <MenuItem Header="Convolution Filters" Command="{Binding SelectConvolutionFiltersCommand}"/>
+                <MenuItem Header="Custom Function Filters" Command="{Binding SelectCustomFunctionFiltersCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <ContentControl Grid.Row="1" Grid.Column="0" Background="#EEE"
+                Content="{Binding CurrentView}" />
+
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
+                <Image Name="OriginalImage" Stretch="Uniform"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
+                <Image Name="FilteredImage" Stretch="Uniform"/>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Background="#EEE">
+            <TextBlock Text="Applied Filters" FontWeight="Bold"/>
+            <ListBox Name="FilterHistoryList" Height="Auto"/>
+        </StackPanel>
+
     </Grid>
 </Window>
