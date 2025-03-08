@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComputerGraphicsProject.Filters.Convolution
 {
-    internal class BlurFilter : ConvolutionFilter
+    internal class EmbossFilter : ConvolutionFilter
     {
-        public override string FilterName => "Blurring";
+        public override string FilterName => "South‐east Emboss";
 
         protected override double[,] Kernel { get; } = {
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 }
+            { -2, -1, 0 },
+            { -1, 1, 1 },
+            { 0, 1, 2 }
         };
     }
 }

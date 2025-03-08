@@ -58,6 +58,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Filters\Convolution\BlurFilter.cs" />
+    <Compile Include="Filters\Convolution\ConvolutionFilter.cs" />
+    <Compile Include="Filters\Convolution\EmbossFilter.cs" />
+    <Compile Include="Filters\Convolution\GaussianBlurFilter.cs" />
+    <Compile Include="Filters\Convolution\LaplacianEdgeDetectionFilter.cs" />
+    <Compile Include="Filters\Convolution\SharpenFilter.cs" />
     <Compile Include="Filters\Function\BrightnessCorrectionFilter.cs" />
     <Compile Include="Filters\Function\ContrastEnhancementFilter.cs" />
     <Compile Include="Filters\Function\GammaCorrectionFilter.cs" />

@@ -4,9 +4,9 @@
     <StackPanel>
         <TextBlock Text="Convolution Filters" FontWeight="Bold"/>
         <Button Content="Blur" Margin="5" Click="Blur_Click"/>
-        <Button Content="Gaussian Blur" Margin="5"/>
-        <Button Content="Sharpen" Margin="5"/>
-        <Button Content="Edge Detection" Margin="5"/>
-        <Button Content="Emboss" Margin="5"/>
+        <Button Content="Gaussian Blur" Margin="5" Click="GaussianBlur_Click"/>
+        <Button Content="Sharpen" Margin="5" Click="Sharpen_Click"/>
+        <Button Content="Edge Detection" Margin="5" Click="EdgeDetection_Click"/>
+        <Button Content="Emboss" Margin="5" Click="Emboss_Click"/>
     </StackPanel>
 </UserControl>

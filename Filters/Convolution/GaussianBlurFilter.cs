@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComputerGraphicsProject.Filters.Convolution
 {
-    internal class BlurFilter : ConvolutionFilter
+    internal class GaussianBlurFilter : ConvolutionFilter
     {
-        public override string FilterName => "Blurring";
+        public override string FilterName => "Gaussian Blurring";
 
         protected override double[,] Kernel { get; } = {
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 }
+            {0, 1.0/8, 0},
+            {1.0/8, 4.0/8, 1.0/8},
+            {0, 1.0/8, 0}
         };
     }
 }

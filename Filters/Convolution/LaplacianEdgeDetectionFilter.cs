@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComputerGraphicsProject.Filters.Convolution
 {
-    internal class BlurFilter : ConvolutionFilter
+    internal class LaplacianEdgeDetectionFilter : ConvolutionFilter
     {
-        public override string FilterName => "Blurring";
+        public override string FilterName => "Edge detection";
 
         protected override double[,] Kernel { get; } = {
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 },
-            { 1 / 9.0, 1 / 9.0, 1 / 9.0 }
+            { -1, -1, -1},
+            { -1, 8, -1},
+            { -1, -1, -1}
         };
     }
 }

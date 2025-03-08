@@ -69,7 +69,7 @@ namespace ComputerGraphicsProject
             toolTab.ApplyBrightenFilterRequested += OnApplyBrightenFilterRequested;
             toolTab.ApplyDarkenFilterRequested += OnApplyDarkenFilterRequested;
             toolTab.ApplyContrastUpFilterRequested += OnApplyContrastUpFilterRequested;
-            toolTab.ApplyContrastDownFilterRequested += OnApplyContrastDownFilterRequested; 
+            toolTab.ApplyContrastDownFilterRequested += OnApplyContrastDownFilterRequested;
             toolTab.ApplyGammaExpandFilterRequested += OnApplyGammaExpandFilterRequested;
             toolTab.ApplyGammaCompressFilterRequested += OnApplyGammaCompressFilterRequested;
             ToolTab.Content = toolTab;
@@ -79,6 +79,10 @@ namespace ComputerGraphicsProject
         {
             ConvolutionFiltersView tooltab = new ConvolutionFiltersView();
             tooltab.ApplyBlurFilterRequested += OnApplyBlurFilterRequested;
+            tooltab.ApplyGaussianBlurFilterRequested += OnApplyGaussianBlurFilterRequested;
+            tooltab.ApplySharpenFilterRequested += OnApplySharpenFilterRequested;
+            tooltab.ApplyEdgeDetectionFilterRequested += OnApplyEdgeDetectionFilterRequested;
+            tooltab.ApplyEmbossFilterRequested += OnApplyEmbossFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -142,6 +146,30 @@ namespace ComputerGraphicsProject
         private void OnApplyBlurFilterRequested(object sender, EventArgs e)
         {
             BlurFilter filter = new BlurFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyGaussianBlurFilterRequested(object sender, EventArgs e)
+        {
+            ConvolutionFilter filter = new GaussianBlurFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplySharpenFilterRequested(object sender, EventArgs e)
+        {
+            ConvolutionFilter filter = new SharpenFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyEdgeDetectionFilterRequested(object sender, EventArgs e)
+        {
+            ConvolutionFilter filter = new LaplacianEdgeDetectionFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyEmbossFilterRequested(object sender, EventArgs e)
+        {
+            ConvolutionFilter filter = new EmbossFilter();
             ApplyFilter(filter);
         }
 
