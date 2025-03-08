@@ -6,7 +6,9 @@
 		<Button Content="Invert" Margin="5" Click="Invert_Click"/>
 		<Button Content="Brighten Up" Margin="5" Click="Brighten_Click"/>
         <Button Content="Darken Down" Margin="5" Click="Darken_Click"/>
-		<Button Content="Contrast Enhancement" Margin="5"/>
-		<Button Content="Gamma Correction" Margin="5"/>
+        <Button Content="Contrast Up" Margin="5" Click="Contrast_Up_Click"/>
+        <Button Content="Contrast Down" Margin="5" Click="Contrast_Down_Click"/>
+        <Button Content="Gamma Compress" Margin="5" Click="Gamma_Compress_Click"/>
+        <Button Content="Gamma Expand" Margin="5" Click="Gamma_Expand_Click"/>
 	</StackPanel>
 </UserControl>

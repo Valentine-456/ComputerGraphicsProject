@@ -11,6 +11,11 @@ namespace ComputerGraphicsProject.ToolTabsViews
         public event EventHandler ApplyInvertFilterRequested;
         public event EventHandler ApplyBrightenFilterRequested;
         public event EventHandler ApplyDarkenFilterRequested;
+        public event EventHandler ApplyContrastUpFilterRequested;
+        public event EventHandler ApplyContrastDownFilterRequested;
+        public event EventHandler ApplyGammaExpandFilterRequested;
+        public event EventHandler ApplyGammaCompressFilterRequested;
+
         public FunctionFiltersView()
         {
             InitializeComponent();
@@ -29,6 +34,26 @@ namespace ComputerGraphicsProject.ToolTabsViews
         private void Darken_Click(object sender, RoutedEventArgs e)
         {
             ApplyDarkenFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Contrast_Up_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyContrastUpFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Contrast_Down_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyContrastDownFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Gamma_Expand_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyGammaExpandFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Gamma_Compress_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyGammaCompressFilterRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }

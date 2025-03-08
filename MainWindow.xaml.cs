@@ -39,7 +39,7 @@ namespace ComputerGraphicsProject
         private void OpenImage_Click(object sender, RoutedEventArgs e)
         {
             WriteableBitmap image = FileOperations.OpenFile();
-            if(image != null )
+            if (image != null)
             {
                 OriginalImage.Source = image;
                 ProcessedImage.Source = image.Clone();
@@ -50,7 +50,7 @@ namespace ComputerGraphicsProject
 
         private void SaveImage_Click(Object sender, RoutedEventArgs e)
         {
-            if(ProcessedImage.Source is WriteableBitmap bitmap)
+            if (ProcessedImage.Source is WriteableBitmap bitmap)
             {
                 FileOperations.SaveFile(bitmap);
             }
@@ -67,6 +67,10 @@ namespace ComputerGraphicsProject
             toolTab.ApplyInvertFilterRequested += OnApplyInvertFilterRequested;
             toolTab.ApplyBrightenFilterRequested += OnApplyBrightenFilterRequested;
             toolTab.ApplyDarkenFilterRequested += OnApplyDarkenFilterRequested;
+            toolTab.ApplyContrastUpFilterRequested += OnApplyContrastUpFilterRequested;
+            toolTab.ApplyContrastDownFilterRequested += OnApplyContrastDownFilterRequested; 
+            toolTab.ApplyGammaExpandFilterRequested += OnApplyGammaExpandFilterRequested;
+            toolTab.ApplyGammaCompressFilterRequested += OnApplyGammaCompressFilterRequested;
             ToolTab.Content = toolTab;
         }
 
@@ -97,6 +101,30 @@ namespace ComputerGraphicsProject
         {
             BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter();
             filter.BrightnessCoefficient = -10;
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyContrastUpFilterRequested(object sender, EventArgs e)
+        {
+            ContrastEnhancementFilter filter = new ContrastEnhancementFilter(1.25);
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyContrastDownFilterRequested(object sender, EventArgs e)
+        {
+            ContrastEnhancementFilter filter = new ContrastEnhancementFilter(0.8);
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyGammaExpandFilterRequested(Object sender, EventArgs e)
+        {
+            GammaCorrectionFilter filter = new GammaCorrectionFilter(2);
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyGammaCompressFilterRequested(Object sender, EventArgs e)
+        {
+            GammaCorrectionFilter filter = new GammaCorrectionFilter(0.5);
             ApplyFilter(filter);
         }
 

@@ -58,6 +58,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Filters\Function\BrightnessCorrectionFilter.cs" />
+    <Compile Include="Filters\Function\ContrastEnhancementFilter.cs" />
+    <Compile Include="Filters\Function\GammaCorrectionFilter.cs" />
     <Compile Include="Filters\Function\InvertFilter.cs" />
     <Compile Include="Filters\IImageFilter.cs" />
     <Compile Include="Utils\FileOperations.cs" />
