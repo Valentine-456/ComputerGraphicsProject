@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Filters\Convolution\BlurFilter.cs" />
     <Compile Include="Filters\Function\BrightnessCorrectionFilter.cs" />
     <Compile Include="Filters\Function\ContrastEnhancementFilter.cs" />
     <Compile Include="Filters\Function\GammaCorrectionFilter.cs" />

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
         <TextBlock Text="Convolution Filters" FontWeight="Bold"/>
-        <Button Content="Blur" Margin="5"/>
+        <Button Content="Blur" Margin="5" Click="Blur_Click"/>
         <Button Content="Gaussian Blur" Margin="5"/>
         <Button Content="Sharpen" Margin="5"/>
         <Button Content="Edge Detection" Margin="5"/>

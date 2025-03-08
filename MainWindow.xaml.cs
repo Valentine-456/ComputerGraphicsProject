@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ComputerGraphicsProject.Filters;
+using ComputerGraphicsProject.Filters.Convolution;
 using ComputerGraphicsProject.Filters.Function;
 using ComputerGraphicsProject.ToolTabsViews;
 using ComputerGraphicsProject.Utils;
@@ -76,7 +77,9 @@ namespace ComputerGraphicsProject
 
         private void SelectConvolutionFilters_Click(object sender, RoutedEventArgs e)
         {
-            ToolTab.Content = new ConvolutionFiltersView();
+            ConvolutionFiltersView tooltab = new ConvolutionFiltersView();
+            tooltab.ApplyBlurFilterRequested += OnApplyBlurFilterRequested;
+            ToolTab.Content = tooltab;
         }
 
         private void SelectCustomFunctionFilters_Click(object sender, RoutedEventArgs e)
@@ -133,6 +136,12 @@ namespace ComputerGraphicsProject
         private void OnApplyGammaCompressFilterRequested(Object sender, EventArgs e)
         {
             GammaCorrectionFilter filter = new GammaCorrectionFilter(0.5);
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyBlurFilterRequested(object sender, EventArgs e)
+        {
+            BlurFilter filter = new BlurFilter();
             ApplyFilter(filter);
         }
 
