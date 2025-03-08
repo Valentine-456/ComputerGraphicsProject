@@ -84,6 +84,14 @@ namespace ComputerGraphicsProject
             ToolTab.Content = new CustomFunctionFiltersView();
         }
 
+        private void RestoreOriginal_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessedImage.Source = OriginalImage.Source.CloneCurrentValue();
+            _filterHistory.Clear();
+            _filterHistory.Add("Restored original");
+        }
+
+
         private void OnApplyInvertFilterRequested(object sender, EventArgs e)
         {
             InvertFilter filter = new InvertFilter();

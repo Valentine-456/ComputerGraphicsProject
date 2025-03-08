@@ -28,6 +28,7 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo" />
                 <MenuItem Header="Redo" />
+                <MenuItem Header="Restore original image" Click="RestoreOriginal_Click"/>
             </MenuItem>
             <MenuItem Header="Filters">
                 <MenuItem Header="Function Filters" Click="SelectFunctionFilters_Click"/>
