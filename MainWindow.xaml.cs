@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ComputerGraphicsProject.Filters;
+using ComputerGraphicsProject.Filters.Function;
 using ComputerGraphicsProject.ToolTabsViews;
 using ComputerGraphicsProject.Utils;
 using Microsoft.Win32;
@@ -25,10 +28,12 @@ namespace ComputerGraphicsProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<string> _filterHistory = new ObservableCollection<string>();
         public MainWindow()
         {
             InitializeComponent();
-            ToolTab.Content = new FunctionFiltersView();
+            SelectFunctionFilters_Click(this, new RoutedEventArgs());
+            FilterHistoryList.ItemsSource = _filterHistory;
         }
 
         private void OpenImage_Click(object sender, RoutedEventArgs e)
@@ -37,7 +42,9 @@ namespace ComputerGraphicsProject
             if(image != null )
             {
                 OriginalImage.Source = image;
-                ProcessedImage.Source = image;
+                ProcessedImage.Source = image.Clone();
+                _filterHistory.Clear();
+                _filterHistory.Add("Image loaded");
             }
         }
 
@@ -46,10 +53,6 @@ namespace ComputerGraphicsProject
             if(ProcessedImage.Source is WriteableBitmap bitmap)
             {
                 FileOperations.SaveFile(bitmap);
-            }
-            else
-            {
-                Console.WriteLine("fuck you");
             }
         }
 
@@ -60,7 +63,11 @@ namespace ComputerGraphicsProject
 
         private void SelectFunctionFilters_Click(object sender, RoutedEventArgs e)
         {
-            ToolTab.Content = new FunctionFiltersView();
+            FunctionFiltersView toolTab = new FunctionFiltersView();
+            toolTab.ApplyInvertFilterRequested += OnApplyInvertFilterRequested;
+            toolTab.ApplyBrightenFilterRequested += OnApplyBrightenFilterRequested;
+            toolTab.ApplyDarkenFilterRequested += OnApplyDarkenFilterRequested;
+            ToolTab.Content = toolTab;
         }
 
         private void SelectConvolutionFilters_Click(object sender, RoutedEventArgs e)
@@ -71,6 +78,39 @@ namespace ComputerGraphicsProject
         private void SelectCustomFunctionFilters_Click(object sender, RoutedEventArgs e)
         {
             ToolTab.Content = new CustomFunctionFiltersView();
+        }
+
+        private void OnApplyInvertFilterRequested(object sender, EventArgs e)
+        {
+            InvertFilter filter = new InvertFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyBrightenFilterRequested(object sender, EventArgs e)
+        {
+            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter();
+            filter.BrightnessCoefficient = 10;
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyDarkenFilterRequested(object sender, EventArgs e)
+        {
+            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter();
+            filter.BrightnessCoefficient = -10;
+            ApplyFilter(filter);
+        }
+
+        private void ApplyFilter(IImageFilter filter)
+        {
+            if (ProcessedImage.Source != null)
+            {
+                ProcessedImage.Source = filter.Apply(ProcessedImage.Source as WriteableBitmap);
+                _filterHistory.Add(filter.FilterName);
+            }
+            else
+            {
+                MessageBox.Show("No image loaded!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
     }

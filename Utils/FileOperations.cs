@@ -21,7 +21,8 @@ namespace ComputerGraphicsProject.Utils
             {
                 Uri uri = new Uri(dialog.FileName);
                 BitmapImage bitmapImage = new BitmapImage(uri);
-                return new WriteableBitmap(bitmapImage);
+                WriteableBitmap bitmap = new WriteableBitmap(bitmapImage);
+                return ConvertToBgra32(bitmap);
             }
             return null;
         }
@@ -44,6 +45,17 @@ namespace ComputerGraphicsProject.Utils
                     encoder.Save(stream);
                 }
             }
+        }
+
+        private static WriteableBitmap ConvertToBgra32(WriteableBitmap bitmap)
+        {
+            FormatConvertedBitmap converted = new FormatConvertedBitmap();
+            converted.BeginInit();
+            converted.Source = bitmap;
+            converted.DestinationFormat = PixelFormats.Bgra32;
+            converted.EndInit();
+
+            return new WriteableBitmap(converted);
         }
     }
 }

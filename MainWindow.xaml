@@ -52,10 +52,14 @@
             </Border>
         </Grid>
 
-        <StackPanel Grid.Row="1" Grid.Column="2" Background="#EEE">
-            <TextBlock Text="Applied Filters" FontWeight="Bold"/>
-            <ListBox Name="FilterHistoryList" Height="Auto"/>
-        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="2" Background="#EEE">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="History" FontWeight="Bold" Grid.Row="0"/>
+            <ListBox x:Name="FilterHistoryList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </Grid>
 
     </Grid>
 </Window>
