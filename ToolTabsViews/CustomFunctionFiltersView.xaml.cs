@@ -6,12 +6,17 @@ using System.Collections.Generic;
 using System.Windows.Shapes;
 using System.Linq;
 using System;
+using Microsoft.Win32;
+using System.Text.Json;
+using System.IO;
+using ComputerGraphicsProject.Filters.Function;
 
 namespace ComputerGraphicsProject.ToolTabsViews
 {
     public partial class CustomFunctionFiltersView : UserControl
     {
         private List<Point> functionPoints = new List<Point>();
+        public event EventHandler<CustomFunctionFilter> ApplyCustomFilterRequested;
 
         public CustomFunctionFiltersView()
         {
@@ -68,7 +73,90 @@ namespace ComputerGraphicsProject.ToolTabsViews
 
         public void SaveFilter_Click(object sender, RoutedEventArgs e)
         {
+            string filterName = FilterNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(filterName))
+            {
+                MessageBox.Show("Please enter a filter name before saving.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "JSON Files (*.json)|*.json",
+                Title = "Save Custom Function Filter",
+                FileName = filterName + ".json"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                SaveFilterToFile(saveFileDialog.FileName);
+            }
         }
+
+        private void SaveFilterToFile(string filePath)
+        {
+            var filterData = new
+            {
+                Name = FilterNameTextBox.Text.Trim(),
+                Points = functionPoints
+            };
+
+            string json = JsonSerializer.Serialize(filterData, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
+        }
+
+        public void LoadFilter_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "JSON Files (*.json)|*.json",
+                Title = "Load Custom Function Filter"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                LoadFilterFromFile(openFileDialog.FileName);
+            }
+        }
+
+        private void LoadFilterFromFile(string filePath)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                var filterData = JsonSerializer.Deserialize<CustomFilterData>(json);
+
+                if (filterData != null)
+                {
+                    FilterNameTextBox.Text = filterData.Name;
+                    functionPoints = filterData.Points.OrderBy(p => p.X).ToList();
+                    DrawFunction();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error loading filter file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void ApplyFilter_Click(object sender, RoutedEventArgs e)
+        {
+            string filterName = FilterNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(filterName))
+            {
+                MessageBox.Show("Please enter a filter name before applying.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            CustomFunctionFilter customFilter = new CustomFunctionFilter(filterName, functionPoints);
+            ApplyCustomFilterRequested?.Invoke(this, customFilter);
+        }
+
+        private class CustomFilterData
+        {
+            public string Name { get; set; }
+            public List<Point> Points { get; set; }
+        }
+
     }
 }

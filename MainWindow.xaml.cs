@@ -88,7 +88,9 @@ namespace ComputerGraphicsProject
 
         private void SelectCustomFunctionFilters_Click(object sender, RoutedEventArgs e)
         {
-            ToolTab.Content = new CustomFunctionFiltersView();
+            CustomFunctionFiltersView tooltab = new CustomFunctionFiltersView();
+            tooltab.ApplyCustomFilterRequested += OnApplyCustomFilterRequested;
+            ToolTab.Content = tooltab;
         }
 
         private void RestoreOriginal_Click(object sender, RoutedEventArgs e)
@@ -168,6 +170,11 @@ namespace ComputerGraphicsProject
         private void OnApplyEmbossFilterRequested(object sender, EventArgs e)
         {
             ConvolutionFilter filter = new EmbossFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyCustomFilterRequested(object sender, CustomFunctionFilter filter)
+        {
             ApplyFilter(filter);
         }
 

@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace ComputerGraphicsProject.Filters.Function
 {
-    internal abstract class FunctionFilter : IImageFilter
+    public abstract class FunctionFilter : IImageFilter
     {
         protected byte[] LookupTable { get; set; } = new byte[256];
         public abstract string FilterName { get; }
