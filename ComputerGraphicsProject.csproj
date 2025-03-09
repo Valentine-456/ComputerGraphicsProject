@@ -65,6 +65,7 @@
     <Compile Include="Filters\Convolution\SharpenFilter.cs" />
     <Compile Include="Filters\Function\BrightnessCorrectionFilter.cs" />
     <Compile Include="Filters\Function\ContrastEnhancementFilter.cs" />
+    <Compile Include="Filters\Function\FunctionFilter.cs" />
     <Compile Include="Filters\Function\GammaCorrectionFilter.cs" />
     <Compile Include="Filters\Function\InvertFilter.cs" />
     <Compile Include="Filters\IImageFilter.cs" />

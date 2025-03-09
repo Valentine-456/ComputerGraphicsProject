@@ -107,15 +107,13 @@ namespace ComputerGraphicsProject
 
         private void OnApplyBrightenFilterRequested(object sender, EventArgs e)
         {
-            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter();
-            filter.BrightnessCoefficient = 10;
+            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter(10);
             ApplyFilter(filter);
         }
 
         private void OnApplyDarkenFilterRequested(object sender, EventArgs e)
         {
-            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter();
-            filter.BrightnessCoefficient = -10;
+            BrightnessCorrectionFilter filter = new BrightnessCorrectionFilter(-10);
             ApplyFilter(filter);
         }
 

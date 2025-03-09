@@ -7,36 +7,13 @@ using System.Windows.Media.Imaging;
 
 namespace ComputerGraphicsProject.Filters.Function
 {
-    internal class InvertFilter : IImageFilter
+    internal class InvertFilter : FunctionFilter
     {
-        private string _name = "Invert";
-        public string FilterName { get { return _name; } }
+        public override string FilterName => "Invert";
 
-        public WriteableBitmap Apply(WriteableBitmap input)
+        public InvertFilter()
         {
-            input.Lock();
-            int width = input.PixelWidth;
-            int height = input.PixelHeight;
-            unsafe
-            {
-                IntPtr buffer = input.BackBuffer;
-                int bytesPerPixel = (input.Format.BitsPerPixel + 7) / 8;
-
-                for (int x = 0; x < width; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        byte* pixel = (byte*)buffer + (x + y*width)*bytesPerPixel;
-
-                        pixel[0] = (byte)(255 - pixel[0]);
-                        pixel[1] = (byte)(255 - pixel[1]);
-                        pixel[2] = (byte)(255 - pixel[2]);
-                    }
-                }
-                input.AddDirtyRect(new System.Windows.Int32Rect(0, 0, width, height));
-                input.Unlock();
-                return input;
-            }
+            for (int i = 0; i < 256; i++) LookupTable[i] = (byte)(255 - i);
         }
     }
 }
