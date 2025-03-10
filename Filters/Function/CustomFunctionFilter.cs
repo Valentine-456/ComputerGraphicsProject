@@ -32,7 +32,6 @@ namespace ComputerGraphicsProject.Filters.Function
                 }
                 else
                 {
-
                     LookupTable[i] = RoundToByteBounds(left.Y);
                 }
             }
