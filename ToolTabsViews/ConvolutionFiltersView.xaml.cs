@@ -14,6 +14,8 @@ namespace ComputerGraphicsProject.ToolTabsViews
         public event EventHandler ApplySharpenFilterRequested;
         public event EventHandler ApplyEdgeDetectionFilterRequested;
         public event EventHandler ApplyEmbossFilterRequested;
+        public event EventHandler ApplyErosionFilterRequested;
+        public event EventHandler ApplyDilationFilterRequested;
 
         public ConvolutionFiltersView()
         {
@@ -43,6 +45,16 @@ namespace ComputerGraphicsProject.ToolTabsViews
         private void Emboss_Click(object sender, RoutedEventArgs e)
         {
             ApplyEmbossFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Erosion_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyErosionFilterRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Dilation_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyDilationFilterRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }

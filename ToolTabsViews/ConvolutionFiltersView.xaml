@@ -8,5 +8,7 @@
         <Button Content="Sharpen" Margin="5" Click="Sharpen_Click"/>
         <Button Content="Edge Detection" Margin="5" Click="EdgeDetection_Click"/>
         <Button Content="Emboss" Margin="5" Click="Emboss_Click"/>
+        <Button Content="Erosion" Margin="5" Click="Erosion_Click"/>
+        <Button Content="Dilation" Margin="5" Click="Dilation_Click"/>
     </StackPanel>
 </UserControl>

@@ -90,7 +90,9 @@
     </ApplicationDefinition>
     <Compile Include="Filters\Convolution\BlurFilter.cs" />
     <Compile Include="Filters\Convolution\ConvolutionFilter.cs" />
+    <Compile Include="Filters\Morphological\DilationFilter.cs" />
     <Compile Include="Filters\Convolution\EmbossFilter.cs" />
+    <Compile Include="Filters\Morphological\ErosionFilter.cs" />
     <Compile Include="Filters\Convolution\GaussianBlurFilter.cs" />
     <Compile Include="Filters\Convolution\LaplacianEdgeDetectionFilter.cs" />
     <Compile Include="Filters\Convolution\SharpenFilter.cs" />

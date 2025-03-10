@@ -83,6 +83,8 @@ namespace ComputerGraphicsProject
             tooltab.ApplySharpenFilterRequested += OnApplySharpenFilterRequested;
             tooltab.ApplyEdgeDetectionFilterRequested += OnApplyEdgeDetectionFilterRequested;
             tooltab.ApplyEmbossFilterRequested += OnApplyEmbossFilterRequested;
+            tooltab.ApplyErosionFilterRequested += OnApplyErosionFilterRequested;
+            tooltab.ApplyDilationFilterRequested += OnApplyDilationFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -177,6 +179,19 @@ namespace ComputerGraphicsProject
         {
             ApplyFilter(filter);
         }
+
+        private void OnApplyErosionFilterRequested(object sender, EventArgs e)
+        {
+            IImageFilter filter = new ErosionFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyDilationFilterRequested(object sender, EventArgs e)
+        {
+            IImageFilter filter = new DilationFilter();
+            ApplyFilter(filter);
+        }
+
 
         private void ApplyFilter(IImageFilter filter)
         {
