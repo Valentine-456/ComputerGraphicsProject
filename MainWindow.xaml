@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        
+
         <Menu Grid.Row="0" Grid.ColumnSpan="3">
             <MenuItem Header="File">
                 <MenuItem Header="Open Image" Click="OpenImage_Click"/>
@@ -45,12 +45,36 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                <Image x:Name="OriginalImage" Stretch="Uniform"/>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                <Image x:Name="ProcessedImage" Stretch="Uniform"/>
-            </Border>
+
+            <ScrollViewer 
+                Grid.Column="0" 
+                x:Name="OriginalScrollViewer" 
+                HorizontalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Auto" 
+                ScrollChanged="OnOriginalScrollChanged"
+                PreviewMouseWheel="OnMouseWheelZoom"
+                >
+                <Image x:Name="OriginalImage" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor">
+                    <Image.LayoutTransform>
+                        <ScaleTransform x:Name="OriginalImageScale"/>
+                    </Image.LayoutTransform>
+                </Image>
+            </ScrollViewer>
+
+            <ScrollViewer 
+                Grid.Column="1" 
+                x:Name="ProcessedScrollViewer" 
+                HorizontalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Auto" 
+                ScrollChanged="OnProcessedScrollChanged"
+                PreviewMouseWheel="OnMouseWheelZoom"
+                >
+                <Image x:Name="ProcessedImage" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor">
+                    <Image.LayoutTransform>
+                        <ScaleTransform x:Name="ProcessedImageScale"/>
+                    </Image.LayoutTransform>
+                </Image>
+            </ScrollViewer>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="2" Background="#EEE">

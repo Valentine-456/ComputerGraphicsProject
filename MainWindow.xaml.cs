@@ -29,6 +29,10 @@ namespace ComputerGraphicsProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool syncingScroll = false;
+        private double zoomScale = 1.0;
+        private const double ZoomStep = 0.1;
+        private const double MaxZoom = 1.0; 
         private ObservableCollection<string> _filterHistory = new ObservableCollection<string>();
         public MainWindow()
         {
@@ -36,6 +40,67 @@ namespace ComputerGraphicsProject
             SelectFunctionFilters_Click(this, new RoutedEventArgs());
             FilterHistoryList.ItemsSource = _filterHistory;
         }
+
+        private double Clamp(double value, double min, double max) => Math.Max(min, Math.Min(max, value));
+
+        private void OnMouseWheelZoom(object sender, MouseWheelEventArgs e)
+        {
+            double delta = e.Delta > 0 ? ZoomStep : -ZoomStep;
+            var MinZoom = CalculateMinZoom();
+            double newZoom = Clamp(zoomScale + delta, MinZoom, MaxZoom);
+
+            if (Math.Abs(newZoom - zoomScale) > 0.0001)
+            {
+                zoomScale = newZoom;
+
+                OriginalImageScale.ScaleX = zoomScale;
+                OriginalImageScale.ScaleY = zoomScale;
+
+                ProcessedImageScale.ScaleX = zoomScale;
+                ProcessedImageScale.ScaleY = zoomScale;
+            }
+
+            e.Handled = true;
+        }
+
+        private double CalculateMinZoom()
+        {
+            if (OriginalImage.Source is WriteableBitmap bmp &&
+                OriginalScrollViewer.ViewportWidth > 0 &&
+                OriginalScrollViewer.ViewportHeight > 0)
+            {
+                double ratioX = OriginalScrollViewer.ViewportWidth / bmp.PixelWidth;
+                double ratioY = OriginalScrollViewer.ViewportHeight / bmp.PixelHeight;
+
+                return Math.Min(ratioX, ratioY);
+            }
+
+            return 1.0;
+        }
+
+
+        private void OnOriginalScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (syncingScroll) return;
+            syncingScroll = true;
+
+            ProcessedScrollViewer.ScrollToHorizontalOffset(e.HorizontalOffset);
+            ProcessedScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+
+            syncingScroll = false;
+        }
+
+        private void OnProcessedScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (syncingScroll) return;
+            syncingScroll = true;
+
+            OriginalScrollViewer.ScrollToHorizontalOffset(e.HorizontalOffset);
+            OriginalScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+
+            syncingScroll = false;
+        }
+
 
         private void OpenImage_Click(object sender, RoutedEventArgs e)
         {
