@@ -160,6 +160,12 @@ namespace ComputerGraphicsProject
             ToolTab.Content = tooltab;
         }
 
+        private void SelectColorManipulations_Click(object sender, RoutedEventArgs e)
+        {
+            ColorManipulationsView tooltab = new ColorManipulationsView();
+            ToolTab.Content = tooltab;
+        }
+
         private void RestoreOriginal_Click(object sender, RoutedEventArgs e)
         {
             ProcessedImage.Source = OriginalImage.Source.CloneCurrentValue();

@@ -103,6 +103,9 @@
     <Compile Include="Filters\Function\GammaCorrectionFilter.cs" />
     <Compile Include="Filters\Function\InvertFilter.cs" />
     <Compile Include="Filters\IImageFilter.cs" />
+    <Compile Include="ToolTabsViews\ColorManipulationsView.xaml.cs">
+      <DependentUpon>ColorManipulationsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FileOperations.cs" />
     <Compile Include="Utils\FilterStorage.cs" />
     <Page Include="MainWindow.xaml">
@@ -117,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ToolTabsViews\ColorManipulationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToolTabsViews\ConvolutionFiltersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
