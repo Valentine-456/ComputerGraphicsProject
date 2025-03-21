@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ComputerGraphicsProject.Filters;
+using ComputerGraphicsProject.Filters.ColorManipulation;
 using ComputerGraphicsProject.Filters.Convolution;
 using ComputerGraphicsProject.Filters.Function;
 using ComputerGraphicsProject.ToolTabsViews;
@@ -163,6 +164,7 @@ namespace ComputerGraphicsProject
         private void SelectColorManipulations_Click(object sender, RoutedEventArgs e)
         {
             ColorManipulationsView tooltab = new ColorManipulationsView();
+            tooltab.ApplyGreyscaleFilterRequested += OnApplyGreyscaleFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -260,6 +262,12 @@ namespace ComputerGraphicsProject
         private void OnApplyDilationFilterRequested(object sender, EventArgs e)
         {
             IImageFilter filter = new DilationFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnApplyGreyscaleFilterRequested(object sender, EventArgs e)
+        {
+            IImageFilter filter = new GreyscaleFilter();
             ApplyFilter(filter);
         }
 

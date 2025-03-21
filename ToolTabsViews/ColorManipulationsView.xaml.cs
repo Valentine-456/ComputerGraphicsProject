@@ -20,6 +20,8 @@ namespace ComputerGraphicsProject.ToolTabsViews
     /// </summary>
     public partial class ColorManipulationsView : UserControl
     {
+        public event EventHandler ApplyGreyscaleFilterRequested;
+
         public ColorManipulationsView()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace ComputerGraphicsProject.ToolTabsViews
 
         private void Greyscale_Click(object sender, RoutedEventArgs e)
         {
-
+            ApplyGreyscaleFilterRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void Dithering_Click(object sender, RoutedEventArgs e)
