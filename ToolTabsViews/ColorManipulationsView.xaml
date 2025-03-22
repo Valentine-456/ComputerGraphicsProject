@@ -9,7 +9,18 @@
         <StackPanel>
             <TextBlock Text="Color Manipulations" FontWeight="Bold"/>
             <Button Content="Convert To Greyscale" Margin="5" Click="Greyscale_Click"/>
-            <Button Content="Dithering" Margin="5" Click="Dithering_Click"/>
-            <Button Content="Color Quantization" Margin="5" Click="ColorQuantization_Click"/>
+        <StackPanel Margin="10">
+            <TextBlock Text="Average Dithering" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0">
+                <TextBlock Text="Levels per channel"/>
+                <TextBlock Text="{Binding ElementName=DitheringLevelSlider, Path=Value, StringFormat=' {0}'}"
+                   Margin="5,0,0,0"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+            </StackPanel>
+            <Slider x:Name="DitheringLevelSlider" Minimum="2" Maximum="64" Value="4" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,10"/>
+        </StackPanel>
+        <Button Content="Apply Dithering" Margin="5" Click="Dithering_Click"/>
+        <Button Content="Color Quantization" Margin="5" Click="ColorQuantization_Click"/>
         </StackPanel>
 </UserControl>

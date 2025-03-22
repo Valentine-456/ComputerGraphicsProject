@@ -165,6 +165,7 @@ namespace ComputerGraphicsProject
         {
             ColorManipulationsView tooltab = new ColorManipulationsView();
             tooltab.ApplyGreyscaleFilterRequested += OnApplyGreyscaleFilterRequested;
+            tooltab.AverageDitheringFilterRequested += OnAverageDitheringFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -268,6 +269,11 @@ namespace ComputerGraphicsProject
         private void OnApplyGreyscaleFilterRequested(object sender, EventArgs e)
         {
             IImageFilter filter = new GreyscaleFilter();
+            ApplyFilter(filter);
+        }
+
+        private void OnAverageDitheringFilterRequested(object sender, AverageDitheringFilter filter)
+        {
             ApplyFilter(filter);
         }
 

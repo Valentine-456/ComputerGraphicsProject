@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerGraphicsProject.Filters.ColorManipulation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace ComputerGraphicsProject.ToolTabsViews
     public partial class ColorManipulationsView : UserControl
     {
         public event EventHandler ApplyGreyscaleFilterRequested;
+        public event EventHandler<AverageDitheringFilter> AverageDitheringFilterRequested;
 
         public ColorManipulationsView()
         {
@@ -34,7 +36,8 @@ namespace ComputerGraphicsProject.ToolTabsViews
 
         private void Dithering_Click(object sender, RoutedEventArgs e)
         {
-
+            AverageDitheringFilter filter = new AverageDitheringFilter((int) DitheringLevelSlider.Value);
+            AverageDitheringFilterRequested?.Invoke(sender, filter);
         }
 
         private void ColorQuantization_Click(object sender, RoutedEventArgs e)
