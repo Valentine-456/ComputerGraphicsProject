@@ -23,6 +23,7 @@ namespace ComputerGraphicsProject.ToolTabsViews
     {
         public event EventHandler ApplyGreyscaleFilterRequested;
         public event EventHandler<AverageDitheringFilter> AverageDitheringFilterRequested;
+        public event EventHandler<KMeansQuantizationFilter> KMeansQuantizationFilterRequested;
 
         public ColorManipulationsView()
         {
@@ -42,7 +43,8 @@ namespace ComputerGraphicsProject.ToolTabsViews
 
         private void ColorQuantization_Click(object sender, RoutedEventArgs e)
         {
-
+            KMeansQuantizationFilter filter = new KMeansQuantizationFilter((int) QuantizationLevelSlider.Value);
+            KMeansQuantizationFilterRequested?.Invoke(sender, filter);
         }
     }
 }

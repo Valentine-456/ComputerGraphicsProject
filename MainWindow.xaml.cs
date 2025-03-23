@@ -166,6 +166,7 @@ namespace ComputerGraphicsProject
             ColorManipulationsView tooltab = new ColorManipulationsView();
             tooltab.ApplyGreyscaleFilterRequested += OnApplyGreyscaleFilterRequested;
             tooltab.AverageDitheringFilterRequested += OnAverageDitheringFilterRequested;
+            tooltab.KMeansQuantizationFilterRequested += OnKMeansQuantizationFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -277,6 +278,10 @@ namespace ComputerGraphicsProject
             ApplyFilter(filter);
         }
 
+        private void OnKMeansQuantizationFilterRequested(object sender, KMeansQuantizationFilter filter)
+        {
+            ApplyFilter(filter);
+        }
 
         private void ApplyFilter(IImageFilter filter)
         {
