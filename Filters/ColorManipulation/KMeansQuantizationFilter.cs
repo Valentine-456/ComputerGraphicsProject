@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -11,7 +12,7 @@ namespace ComputerGraphicsProject.Filters.ColorManipulation
     public class KMeansQuantizationFilter : IImageFilter
     {
         private int K;
-        private ParallelOptions options = new ParallelOptions
+        private ParallelOptions Options = new ParallelOptions
         {
             MaxDegreeOfParallelism = 10
         };
@@ -50,19 +51,24 @@ namespace ComputerGraphicsProject.Filters.ColorManipulation
 
 
             bool changed = true;
-            while (changed)
-            {
-                changed = false;
+            int maxIterations = 25;
 
-                for (int i = 0; i < pixels.Count; i++)
+            for (int iteration = 0; iteration < maxIterations; iteration++)
+            {
+                int wasChanged = 0;
+
+                Parallel.For(0, pixels.Count, Options, i =>
                 {
                     int newNearestCentroid = GetClosestCentroid(pixels[i], centroids);
                     if (nearestCentroidIndices[i] != newNearestCentroid)
                     {
                         nearestCentroidIndices[i] = newNearestCentroid;
-                        changed = true;
+                        Interlocked.Exchange(ref wasChanged, 1);
                     }
-                }
+                });
+
+                if (wasChanged == 0)
+                    break;
 
                 for (int i = 0; i < K; i++)
                 {
@@ -75,6 +81,7 @@ namespace ComputerGraphicsProject.Filters.ColorManipulation
                     centroids[i] = RecalculateCentroid(assignedPoints);
                 }
             }
+
 
             unsafe
             {
