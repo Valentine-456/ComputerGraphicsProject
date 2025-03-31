@@ -9,9 +9,9 @@ namespace ComputerGraphicsProject.Filters.ColorManipulation
 {
     public class YCCConversionFilter : IImageFilter
     {
-        public string FilterName => "YCC Conversion + dithering (K=7)";
+        public string FilterName => "YCC Conversion + dithering (K=13)";
 
-        private AverageDitheringFilter averageDitheringFilter = new AverageDitheringFilter(7);
+        private AverageDitheringFilter averageDitheringFilter = new AverageDitheringFilter(13);
 
         public WriteableBitmap Apply(WriteableBitmap input)
         {
