@@ -106,6 +106,7 @@
     <Compile Include="Filters\ColorManipulation\AverageDitheringFilter.cs" />
     <Compile Include="Filters\ColorManipulation\GreyscaleFilter.cs" />
     <Compile Include="Filters\ColorManipulation\KMeansQuantizationFilter.cs" />
+    <Compile Include="Filters\ColorManipulation\YCCConversionFilter.cs" />
     <Compile Include="Filters\Convolution\BlurFilter.cs" />
     <Compile Include="Filters\Convolution\ConvolutionFilter.cs" />
     <Compile Include="Filters\Morphological\DilationFilter.cs" />

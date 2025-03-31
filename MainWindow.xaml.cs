@@ -167,6 +167,7 @@ namespace ComputerGraphicsProject
             tooltab.ApplyGreyscaleFilterRequested += OnApplyGreyscaleFilterRequested;
             tooltab.AverageDitheringFilterRequested += OnAverageDitheringFilterRequested;
             tooltab.KMeansQuantizationFilterRequested += OnKMeansQuantizationFilterRequested;
+            tooltab.YCCConversionFilterRequested += OnYCCConversionFilterRequested;
             ToolTab.Content = tooltab;
         }
 
@@ -279,6 +280,11 @@ namespace ComputerGraphicsProject
         }
 
         private void OnKMeansQuantizationFilterRequested(object sender, KMeansQuantizationFilter filter)
+        {
+            ApplyFilter(filter);
+        }
+
+        private void OnYCCConversionFilterRequested(object sender,  YCCConversionFilter filter)
         {
             ApplyFilter(filter);
         }

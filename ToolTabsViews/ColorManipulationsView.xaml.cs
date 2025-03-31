@@ -24,6 +24,7 @@ namespace ComputerGraphicsProject.ToolTabsViews
         public event EventHandler ApplyGreyscaleFilterRequested;
         public event EventHandler<AverageDitheringFilter> AverageDitheringFilterRequested;
         public event EventHandler<KMeansQuantizationFilter> KMeansQuantizationFilterRequested;
+        public event EventHandler<YCCConversionFilter> YCCConversionFilterRequested;
 
         public ColorManipulationsView()
         {
@@ -45,6 +46,13 @@ namespace ComputerGraphicsProject.ToolTabsViews
         {
             KMeansQuantizationFilter filter = new KMeansQuantizationFilter((int) QuantizationLevelSlider.Value);
             KMeansQuantizationFilterRequested?.Invoke(sender, filter);
+        }
+
+        private void YCC_Click(object sender, RoutedEventArgs e)
+        {
+            YCCConversionFilter filter = new YCCConversionFilter();
+            YCCConversionFilterRequested?.Invoke(sender, filter);
+
         }
     }
 }

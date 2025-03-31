@@ -34,5 +34,6 @@
             <Slider x:Name="QuantizationLevelSlider" Minimum="2" Maximum="256" Value="4" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,10"/>
         </StackPanel>
         <Button Content="Color Quantization" Margin="5" Click="ColorQuantization_Click"/>
-        </StackPanel>
+        <Button Content="YCC Conversion" Margin="5" Click="YCC_Click"/>
+    </StackPanel>
 </UserControl>
