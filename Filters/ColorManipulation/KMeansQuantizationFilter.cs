@@ -50,8 +50,7 @@ namespace ComputerGraphicsProject.Filters.ColorManipulation
             List<int> nearestCentroidIndices  = Enumerable.Repeat(-1, pixels.Count).ToList();
 
 
-            bool changed = true;
-            int maxIterations = 25;
+            int maxIterations = 100;
 
             for (int iteration = 0; iteration < maxIterations; iteration++)
             {
